@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+
+  nodejs:
+    build: ./Nodejs/api
+    container_name: Node_app
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./api:/api
+      - ./app/node_modules
+
+  react:
+    build: ./React/myblog
+    container_name: blog
+    ports:
+      - '3000:3000'
+    
+  python:
+    build: ./Python/django-todo
+    container_name: todoApp
+    ports:
+      - '8000:8000'
+  
