@@ -14,7 +14,7 @@ The application is a profile page that saves information about a user.
 5. Enable deletion of the setup with a single command (docker-compose down) without requiring additional commands to clean up resources such as networks or stopped containers.
 ## Solution 
 ### Containerizing the application
-```
+```yaml
 FROM node:13-alpine
 
 ENV MONGO_DB_USERNAME=admin \
