@@ -14,6 +14,24 @@ The application is a profile page that saves information about a user.
 5. Enable deletion of the setup with a single command (docker-compose down) without requiring additional commands to clean up resources such as networks or stopped containers.
 ## Solution 
 ### Containerizing the application
+```
+FROM node:13-alpine
+
+ENV MONGO_DB_USERNAME=admin \
+    MONGO_DB_PWD=password
+
+RUN mkdir -p /home/app
+
+COPY ./app /home/app
+
+# set default dir so that next commands executes in /home/app dir
+WORKDIR /home/app
+
+# will execute npm install in /home/app because of WORKDIR
+RUN npm install
+
+CMD ["node", "server.js"]
+```
 - The application is built using `node:13-alpine` base image (runtime).
 - Database connection credentials are provided as environment variables (note: it's not best practice to provide credentials in plain text).
 - All necessary files and dependencies are copied to the image with the `COPY` command.
